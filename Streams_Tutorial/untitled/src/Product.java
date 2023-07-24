@@ -1,15 +1,13 @@
-package main.java;
-
 import java.util.Map;
 
 public class Product {
-
     private String name;
     private double price;
     private double discount;
-    private Map<String, String> attributes;
+    private Map<String,String> attributes;
 
-    public Product(String name, double price, double discount, Map<String, String> attributes) {
+    public Product(){};
+    public Product(String name, double price, double discount, Map<String, String> attributes){
         this.name = name;
         this.price = price;
         this.discount = discount;
@@ -48,9 +46,8 @@ public class Product {
         this.attributes = attributes;
     }
 
-
     @Override
-    public String toString() {
+    public String toString(){
         return "Product{" +
                 "name='" + name + '\'' +
                 ", price=" + price +

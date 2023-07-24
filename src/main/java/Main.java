@@ -1,3 +1,5 @@
+package main.java;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -8,7 +10,8 @@ public class Main {
 
         // Example 1. List of all iPhones
         List<Product> ex1 = products.stream().filter(product -> product.getName().toLowerCase().contains("iphone")).collect(Collectors.toList());
-        //ex1.forEach(System.out::println);
+        ex1.forEach(System.out::println);
+
 
         // Example 2. List of all colours of iPhones
         List<String> ex2 = products.stream()
