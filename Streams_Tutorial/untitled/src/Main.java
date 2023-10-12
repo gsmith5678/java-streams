@@ -68,12 +68,13 @@ public class Main {
         Product ex6 = products.stream()
                 .min(Comparator.comparing(p->p.getPrice())).get();
         System.out.println(ex6);
+        System.out.println("-------ex7------");
 
         Map<String, List<String>> ex7 = products.stream()
                 .collect(
                         Collectors.groupingBy(p -> p.getAttributes().getOrDefault("colour", "No Colour"), Collectors.mapping(Product::getName, Collectors.toList()))
                 );
-        //ex7.forEach((k, v) -> System.out.println(k + " : " + v));
+        ex7.forEach((k, v) -> System.out.println(k + " : " + v));
         System.out.println("-------");
         products.parallelStream().forEach(p -> System.out.println(p.getName() + " " + Thread.currentThread().getName()));
         System.out.println("-------");
@@ -105,7 +106,25 @@ public class Main {
         System.out.println("---prod---");
         Product prod = exercises.productWithMaxDiscountInDollars(products);
         System.out.println(prod);
+
+        System.out.println("---comp---");
+        Comparator<Product> com = new Comparator<Product>() {
+            @Override
+            public int compare(Product a, Product b) {
+                int name = a.getName().substring(0,4).compareTo(b.getName().substring(0,4));
+                int second = Double.compare(a.getPrice(), b.getPrice());
+
+                return name != 0 ? name : second;
+
+            }
+        };
+
+        Collections.sort(products, com);
+
+        products.forEach(System.out::println);
     }
+
+
 
     protected static List<Product> getProducts(){
         List<Product> products = new ArrayList<>();
